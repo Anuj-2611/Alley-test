@@ -20,7 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/ecommerce_db", {
+mongoose.connect("mongodb+srv://anujgodhani76842_db_user:anuj2611@cluster0.7gveoww.mongodb.net/ecommerce_db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
