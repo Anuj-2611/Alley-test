@@ -13,6 +13,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import adminUsersRoutes from "./routes/adminUsersRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
+import adminMigrationsRoutes from "./routes/adminMigrations.js";
 
 dotenv.config();
 
@@ -20,16 +21,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ecommerce_db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("Connected to MongoDB");
-})
-.catch((err) => {
-  console.error("MongoDB connection error:", err);
-});
+if (!process.env.VERCEL) {
+  mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ecommerce_db", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
+}
 
 app.use("/api/products", productRoutes);
 app.use("/api/product-sales", productSaleRoutes);
@@ -41,6 +44,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin/users", adminUsersRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/admin", adminMigrationsRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
