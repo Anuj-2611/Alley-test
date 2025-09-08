@@ -13,7 +13,7 @@ export default function Orders() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:5000/api/orders');
+      const response = await fetch('/api/orders');
       if (!response.ok) throw new Error('Failed to load orders');
       
       const data = await response.json();
@@ -32,7 +32,7 @@ export default function Orders() {
 
   const updateStatus = async (id, status) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${id}/status`, {
+      const response = await fetch(`/api/orders/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })

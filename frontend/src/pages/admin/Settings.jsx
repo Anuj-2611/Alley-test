@@ -20,7 +20,7 @@ export default function Settings() {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch('http://localhost:5000/api/admin/users', {
+      const response = await fetch('/api/admin/users', {
         headers
       });
       
@@ -60,7 +60,7 @@ export default function Settings() {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch('http://localhost:5000/api/admin/users', {
+      const response = await fetch('/api/admin/users', {
         method: 'POST',
         headers,
         body: JSON.stringify(form)
@@ -104,7 +104,7 @@ export default function Settings() {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch(`http://localhost:5000/api/admin/users/${id}/role`, {
+      const response = await fetch(`/api/admin/users/${id}/role`, {
         method: 'PATCH',
         headers,
         body: JSON.stringify({ role: editForm.role })
@@ -136,7 +136,7 @@ export default function Settings() {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch(`http://localhost:5000/api/admin/users/${id}`, {
+      const response = await fetch(`/api/admin/users/${id}`, {
         method: 'DELETE',
         headers
       });

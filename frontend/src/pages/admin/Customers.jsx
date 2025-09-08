@@ -17,7 +17,7 @@ export default function Customers() {
         headers['Authorization'] = `Bearer ${token}`;
       }
       
-      const response = await fetch('http://localhost:5000/api/auth/users', {
+      const response = await fetch('/api/auth/users', {
         headers
       });
       

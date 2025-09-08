@@ -26,13 +26,13 @@ export default function ProductForm() {
         setLoading(true);
         setError(null);
         
-        const categoriesRes = await fetch('http://localhost:5000/api/categories');
+        const categoriesRes = await fetch('/api/categories');
         if (!categoriesRes.ok) throw new Error('Failed to load categories');
         const categoriesData = await categoriesRes.json();
         setCategories(categoriesData);
         
         if (isEdit) {
-          const productRes = await fetch(`http://localhost:5000/api/products/${id}`);
+          const productRes = await fetch(`/api/products/${id}`);
           if (!productRes.ok) throw new Error('Failed to load product');
           const productData = await productRes.json();
           setForm({
@@ -69,8 +69,8 @@ export default function ProductForm() {
       
       const method = isEdit ? 'PUT' : 'POST';
       const url = isEdit 
-        ? `http://localhost:5000/api/products/${id}` 
-        : 'http://localhost:5000/api/products/add';
+        ? `/api/products/${id}` 
+        : '/api/products/add';
       
       const response = await fetch(url, {
         method,

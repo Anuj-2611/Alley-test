@@ -16,10 +16,10 @@ export default function Dashboard() {
         setError(null);
         
         const [qs, rt, cs, bs] = await Promise.all([
-          fetch('http://localhost:5000/api/reports/quick-stats').then(r => r.json()),
-          fetch('http://localhost:5000/api/reports/revenue-trends').then(r => r.json()),
-          fetch('http://localhost:5000/api/reports/category-sales').then(r => r.json()),
-          fetch('http://localhost:5000/api/reports/best-sellers').then(r => r.json()),
+          fetch('/api/reports/quick-stats').then(r => r.json()),
+          fetch('/api/reports/revenue-trends').then(r => r.json()),
+          fetch('/api/reports/category-sales').then(r => r.json()),
+          fetch('/api/reports/best-sellers').then(r => r.json()),
         ]);
         
         setStats(qs);

@@ -14,8 +14,8 @@ export default function Reports() {
         setError(null);
         
         const [revenueRes, categoryRes] = await Promise.all([
-          fetch('http://localhost:5000/api/reports/revenue-trends'),
-          fetch('http://localhost:5000/api/reports/category-sales')
+          fetch('/api/reports/revenue-trends'),
+          fetch('/api/reports/category-sales')
         ]);
         
         if (!revenueRes.ok || !categoryRes.ok) {

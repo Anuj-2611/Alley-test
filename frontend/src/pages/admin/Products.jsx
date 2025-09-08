@@ -16,8 +16,8 @@ export default function Products() {
       setError(null);
       
       const [productsRes, categoriesRes] = await Promise.all([
-        fetch('http://localhost:5000/api/products'),
-        fetch('http://localhost:5000/api/categories')
+        fetch('/api/products'),
+        fetch('/api/categories')
       ]);
       
       if (!productsRes.ok || !categoriesRes.ok) {
@@ -57,7 +57,7 @@ export default function Products() {
     if (!confirm('Are you sure you want to delete this product?')) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, { 
+      const response = await fetch(`/api/products/${id}`, { 
         method: 'DELETE' 
       });
       

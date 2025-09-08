@@ -14,7 +14,7 @@ export default function Categories() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:5000/api/categories');
+      const response = await fetch('/api/categories');
       if (!response.ok) throw new Error('Failed to load categories');
       
       const data = await response.json();
@@ -40,7 +40,7 @@ export default function Categories() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/categories', {
+      const response = await fetch('/api/categories', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -73,7 +73,7 @@ export default function Categories() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
+      const response = await fetch(`/api/categories/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editForm)
@@ -94,7 +94,7 @@ export default function Categories() {
     if (!confirm('Are you sure you want to delete this category?')) return;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
+      const response = await fetch(`/api/categories/${id}`, {
         method: 'DELETE'
       });
       
@@ -109,7 +109,7 @@ export default function Categories() {
 
   const toggleActive = async (id, currentStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
+      const response = await fetch(`/api/categories/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive: !currentStatus })

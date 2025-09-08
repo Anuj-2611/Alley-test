@@ -20,7 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://anujgodhani76842_db_user:anuj2611@cluster0.7gveoww.mongodb.net/ecommerce_db", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ecommerce_db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -42,10 +42,11 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/admin/users", adminUsersRoutes);
 app.use("/api/reports", reportRoutes);
 
-
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+  });
+}
 
-
+export default app;

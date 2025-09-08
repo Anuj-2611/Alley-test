@@ -35,7 +35,7 @@ const AddProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/categories");
+      const response = await axios.get("/api/categories");
       setExistingCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -54,7 +54,7 @@ const AddProduct = () => {
       formData.append("image", file);
     });
 
-    const res = await axios.post("http://localhost:5000/api/upload", formData);
+    const res = await axios.post("/api/upload", formData);
     return res.data.imagePaths;
   };
 
@@ -70,7 +70,7 @@ const AddProduct = () => {
       }
 
       // Create new category if it doesn't exist
-      const newCategory = await axios.post("http://localhost:5000/api/categories", {
+      const newCategory = await axios.post("/api/categories", {
         name: categoryName,
         description: `Category for ${categoryName} products`
       });
@@ -105,7 +105,7 @@ const AddProduct = () => {
         images: imagePaths,
       };
 
-      await axios.post("http://localhost:5000/api/products/add", newProduct);
+      await axios.post("/api/products/add", newProduct);
 
       alert("Product added successfully!");
       clearForm();

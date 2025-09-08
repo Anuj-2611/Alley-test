@@ -69,7 +69,7 @@ export const CartProvider = ({ children }) => {
     
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
-      const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const response = await axios.get(`/api/cart/${userId}`);
       dispatch({ type: 'SET_CART', payload: response.data });
     } catch (error) {
       console.error('CartContext: API error:', error);
@@ -85,7 +85,7 @@ export const CartProvider = ({ children }) => {
 
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
-      const response = await axios.post('http://localhost:5000/api/cart/add', {
+      const response = await axios.post('/api/cart/add', {
         userId,
         productId,
         quantity,
@@ -105,7 +105,7 @@ export const CartProvider = ({ children }) => {
 
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
-      const response = await axios.put(`http://localhost:5000/api/cart/update/${userId}/${itemId}`, {
+      const response = await axios.put(`/api/cart/update/${userId}/${itemId}`, {
         quantity
       });
       dispatch({ type: 'UPDATE_ITEM', payload: response.data });
@@ -119,7 +119,7 @@ export const CartProvider = ({ children }) => {
 
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
-      const response = await axios.delete(`http://localhost:5000/api/cart/remove/${userId}/${itemId}`);
+      const response = await axios.delete(`/api/cart/remove/${userId}/${itemId}`);
       dispatch({ type: 'REMOVE_ITEM', payload: response.data });
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error.message });
@@ -131,7 +131,7 @@ export const CartProvider = ({ children }) => {
 
     dispatch({ type: 'SET_LOADING', payload: true });
     try {
-      const response = await axios.delete(`http://localhost:5000/api/cart/clear/${userId}`);
+      const response = await axios.delete(`/api/cart/clear/${userId}`);
       dispatch({ type: 'CLEAR_CART', payload: response.data });
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error.message });
