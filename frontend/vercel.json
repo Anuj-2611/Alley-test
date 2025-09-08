@@ -4,7 +4,7 @@
     { "src": "package.json", "use": "@vercel/static-build" }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "https://alley-test-backend-jihmxast0-anuj-godhais-projects.vercel.app/api/$1" },
+    { "src": "/api/(.*)", "dest": "https://alley-test-backend-9hve32p5q-anuj-godhais-projects.vercel.app/api/$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
