@@ -1,6 +1,6 @@
 // models/Product.js
 import mongoose from "mongoose";
-import Counter from "./Counter.js";
+import Counter from "./counter.js";
 
 const productSchema = new mongoose.Schema({
   productId: { type: Number, unique: true },
