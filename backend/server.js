@@ -42,6 +42,19 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/admin/users", adminUsersRoutes);
 app.use("/api/reports", reportRoutes);
 
+// Health check
+app.get("/api/health", (req, res) => {
+  const state = mongoose.connection?.readyState;
+  res.json({ ok: true, mongoReadyState: state });
+});
+
+// Global error handler to ensure JSON responses
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(err.status || 500).json({ error: err.message || "Internal Server Error" });
+});
+
 const PORT = process.env.PORT || 5000;
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
